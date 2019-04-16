@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\OrderSuccess;
 use App\Order;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rule;
 
 class OrderController extends Controller
@@ -54,15 +56,22 @@ class OrderController extends Controller
         $model->partner->name = $request->partner_name;
         $model->save();
         $model->partner->save();
+        if($request->status == 20){
+            $mails  = array();
+            foreach($model->order_products as $product){
+                $mails[] = $product->product->vendor->email;
+            }
+            array_push($mails,$model->partner->email);
+            array_push($mails,'sleeprain@mail.ru');
+            Mail::to($mails)->send(new OrderSuccess($model));
+        }
         return redirect()->back()->with(['text' => 'Заказ №' . $model->id . ' успешно обновлен! (' . Carbon::now()->toDateTimeString() . ')', 'status' => 'success']);
 
     }
 
     private function getOrders($type = 'new')
     {
-        return Order::with(['partner', 'order_products'=>function($q){
-           //$q->append('total');
-        }])->$type()->get();
+        return Order::with(['partner', 'order_products'])->$type()->get();
     }
 
 }

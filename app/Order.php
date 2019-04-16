@@ -26,8 +26,6 @@ class Order extends Model
     ];
 
 
-
-
     /**
      * Scope a query to only include Overdue orders.
      *
@@ -85,6 +83,8 @@ class Order extends Model
     {
         return $this->hasMany('App\OrderProduct','order_id','id');
     }
+
+
 
     public function getStatusAttribute($key)
     {
