@@ -11,6 +11,15 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+Route::get('/','HomeController@index')->name('home');
+
+Route::get('/weather','WeatherController@index')->name('weather');
+
+Route::get('/order','OrderController@index')->name('order');
+
+Route::get('/order/edit/{id}','OrderController@edit')->name('order.edit');
+
+Route::post('/order/save/{id}','OrderController@save')->name('order.save');
+
+Route::get('/product','ProductController@index')->name('product');
