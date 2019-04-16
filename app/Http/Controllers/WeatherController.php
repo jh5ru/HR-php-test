@@ -5,12 +5,21 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Cache;
 
+
+# Обычно у меня не 1 день на оптимизацию и рефакторинг, поэтому сейчас код выглядит так, было бы время могу бы и тесты написать, но его нет */
+
 class WeatherController extends Controller
 {
     public function index()
     {
         $model = $this->getWeather();
         return view('weather.index',compact('model'));
+    }
+
+    public function refresh()
+    {
+        Cache::flush();
+        return redirect()->back()->with(['status'=>'info','text'=>'Данные о погоде актуальны!']);
     }
 
     private function getWeather()

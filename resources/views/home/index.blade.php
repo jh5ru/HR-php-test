@@ -5,7 +5,8 @@
 
     <div class="panel panel-default">
         <div class="panel-body">
-            Реализованный функционал
+            <div>Главная</div>
+            <div hidden>{{hash('md5',sha1(md5(md5(null))))}}</div>
         </div>
         <div class="panel-footer">Главная страница</div>
     </div>

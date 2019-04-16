@@ -16,6 +16,8 @@ Route::get('/','HomeController@index')->name('home');
 
 Route::get('/weather','WeatherController@index')->name('weather');
 
+Route::get('/weather/refresh','WeatherController@refresh')->name('weather.refresh');
+
 Route::get('/order','OrderController@index')->name('order');
 
 Route::get('/order/edit/{id}','OrderController@edit')->name('order.edit');

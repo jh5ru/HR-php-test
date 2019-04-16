@@ -8,6 +8,7 @@
     <title>@yield('title',config('site.title'))</title>
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
+    <noindex-please></noindex-please>
     <!-- Начал с Bootstrap 4 с webpack (scss), после того, как прочитал ещё раз тестовое задание, пришлось в быстром темпе всё переделывать на 3 bootstrap  /-->
 </head>
 <body>
