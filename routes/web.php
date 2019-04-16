@@ -24,4 +24,6 @@ Route::get('/order/edit/{id}','OrderController@edit')->name('order.edit');
 
 Route::post('/order/save/{id}','OrderController@save')->name('order.save');
 
-Route::get('/product','ProductController@index')->name('product');
+Route::get('/product/{order?}','ProductController@index')->name('product');
+
+Route::post('/product/save/{id}','ProductController@save')->name('product.save');

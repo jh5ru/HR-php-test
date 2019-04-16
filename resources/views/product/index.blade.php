@@ -5,7 +5,8 @@
 
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title">Список продуктов</h3>
+            <h3 class="panel-title pull-left">Список продуктов</h3>
+            @includeIf('partials.product_filter')
         </div>
         <div class="panel-body">
             <table class="table table-striped table-hover table-bordered">
@@ -23,7 +24,14 @@
                         <td>{{$item->id}}</td>
                         <td>{{$item->name}}</td>
                         <td>{{$item->vendor->name}}</td>
-                        <td><input value="{{number_format($item->price,2)}}" name="price" data-product-id="{{$item->id}}"> Руб.</td>
+                        <td>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <input type="text" class="form-control price" data-product-id="{{$item->id}}" name="price" value="{{number_format($item->price,2)}}">
+                                    <div class="input-group-addon">Руб.</div>
+                                </div>
+                            </div>
+                        </td>
                     </tr>
                 @endforeach
                 </tbody>

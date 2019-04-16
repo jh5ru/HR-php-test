@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+
 class OrderProduct extends Model
 {
 
@@ -11,7 +12,8 @@ class OrderProduct extends Model
         'total'
     ];
 
-    public function getTotalAttribute($key)
+
+    public function getTotalAttribute()
     {
         if ($this->price > 0) {
             return $this->quantity * $this->price;

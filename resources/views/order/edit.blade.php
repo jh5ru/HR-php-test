@@ -11,15 +11,14 @@
                 <div class="panel-body">
                     <ul class="nav nav-tabs">
                         <li class="active"><a data-toggle="tab" href="#panel1">Редактирование заказа №{{$model->id}}</a></li>
-                        <li><a data-toggle="tab" href="#panel2">Состав заказа (Стоимость заказа: {{number_format($model->order_products->sum('price'),2)}} Руб.)</a></li>
+                        <li><a data-toggle="tab" href="#panel2">Состав заказа (Стоимость заказа: {{number_format($model->order_products->sum('total'),2)}} Руб.)</a></li>
                     </ul>
 
                     <div class="tab-content">
                         <div id="panel1" class="tab-pane fade in active">
-                            <form class="form needs-validation" method="post" action="{{url('order/save',['id'=>$model->id])}}" novalidate>
+                            <form class="form" method="post" action="{{url('order/save',['id'=>$model->id])}}">
                                 <div class="card">
                                     <div class="card-body">
-                                        <div class="float-right">Стоимость заказа: {{number_format($model->order_products->sum('price'),2)}} Руб.</div>
                                         @includeIf('partials.form_order',$model)
                                     </div>
                                     <div class="card-footer">

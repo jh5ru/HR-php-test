@@ -15,6 +15,7 @@ class OrderController extends Controller
         $model['current'] = $this->getOrders('current');
         $model['new'] = $this->getOrders('new');
         $model['success'] = $this->getOrders('success');
+
         return view('order.index', compact('model'));
     }
 

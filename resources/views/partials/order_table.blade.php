@@ -16,7 +16,7 @@
             <td>{{$item->id}}</td>
             <td>{{$item->delivery_dt->diffForHumans()}}</td>
             <td>{{$item->partner->name}}</td>
-            <td>{{number_format($item->order_products->sum('price'),2)}} Руб.</td>
+            <td>{{number_format($item->order_products->sum('total'),2)}} Руб.</td>
             <td>
                 <p>
                     <a class="btn btn-info btn-sm" data-toggle="collapse" href="#collapseExample{{$item->id}}"

@@ -4,7 +4,7 @@ namespace App;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\DB;
 
 class Order extends Model
 {
@@ -24,6 +24,8 @@ class Order extends Model
     public $appends = [
         'statuses'
     ];
+
+
 
 
     /**
@@ -70,7 +72,7 @@ class Order extends Model
      */
     public function scopeSuccess($query)
     {
-        return $query->where('status', '=', 20)->where('delivery_dt','>=',Carbon::now())->orderBy('delivery_dt','ASC')->limit(50);
+        return $query->where('status', '=', 20)->whereDate('delivery_dt', DB::raw('CURDATE()'))->orderBy('delivery_dt','ASC')->limit(50);
     }
 
 
